@@ -55,7 +55,7 @@
 
   /* ===== HERO ===== */
   .hero{ padding:96px 0 72px; border-bottom:1px solid var(--line); }
-  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:start; }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center; }
   .hero h1{
     font-family:var(--mono); font-weight:800; font-size:clamp(34px,5vw,54px);
     line-height:1.08; letter-spacing:-0.01em; margin-bottom:18px;
@@ -75,40 +75,10 @@
   .btn-ghost{ border:1px solid var(--line); color:var(--paper); }
   .btn-ghost:hover{ border-color:var(--paper-dim); }
 
-  /* Signature element: live credit-decision card */
-  .decision-card{
-    background:var(--ink-2); border:1px solid var(--line); border-radius:6px; overflow:hidden;
-    font-family:var(--mono);
-  }
-  .decision-head{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:12px 16px; border-bottom:1px solid var(--line); font-size:11px; color:var(--paper-dim);
-    letter-spacing:.08em; text-transform:uppercase;
-  }
-  .dots{ display:flex; gap:6px; }
-  .dots i{ width:8px; height:8px; border-radius:50%; background:var(--line); display:block; }
-  .decision-body{ padding:20px 16px; }
-  .decision-row{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--paper-dim); padding:5px 0; border-bottom:1px dashed var(--line); }
-  .decision-row span:last-child{ color:var(--paper); }
-  .decision-result{
-    margin-top:16px; padding:14px; border-radius:4px; text-align:center;
-    font-weight:700; font-size:15px; letter-spacing:.04em;
-    border:1px solid var(--approve); color:var(--approve); background:rgba(76,154,106,0.08);
-    transition:all .35s ease;
-  }
-  .decision-result.rejected{ border-color:var(--reject); color:var(--reject); background:rgba(193,68,61,0.08); }
-  .decision-sub{ margin-top:6px; font-size:10.5px; color:var(--paper-dim); font-weight:400; letter-spacing:.02em;}
-  .shap{ margin-top:16px; }
-  .shap-label{ font-size:10.5px; color:var(--paper-dim); letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px; }
-  .shap-row{ display:flex; align-items:center; gap:10px; margin-bottom:7px; font-size:11px; }
-  .shap-name{ width:110px; color:var(--paper-dim); flex-shrink:0; }
-  .shap-bar-track{ flex:1; height:6px; background:var(--line); border-radius:3px; position:relative; overflow:hidden; }
-  .shap-bar{ position:absolute; top:0; bottom:0; border-radius:3px; transition:width .5s ease; }
-  .shap-bar.pos{ left:50%; background:var(--approve); }
-  .shap-bar.neg{ right:50%; background:var(--reject); }
-  .decision-refresh{ width:100%; margin-top:16px; padding:10px; background:transparent; border:1px solid var(--line); color:var(--paper-dim); font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; border-radius:3px; cursor:pointer; transition:all .15s; }
-  .decision-refresh:hover{ border-color:var(--gold); color:var(--gold); }
-  .decision-refresh:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+  /* Signature element: coding illustration */
+  .hero-art{ width:100%; height:auto; }
+  .hero-art .blink{ animation: blink 1.6s steps(1) infinite; }
+  @keyframes blink{ 0%,49%{opacity:1;} 50%,100%{opacity:0;} }
 
   /* ===== SECTION SHELL ===== */
   section{ padding:76px 0; border-bottom:1px solid var(--line); }
@@ -173,6 +143,7 @@
     .ledger-row{ grid-template-columns:1fr; gap:6px; }
   }
   @media (prefers-reduced-motion: reduce){
+    .blink{ animation:none !important; opacity:1 !important; }
     *{ transition:none !important; scroll-behavior:auto !important; }
   }
 </style>
@@ -208,6 +179,46 @@
         <a class="btn btn-ghost" href="#contact">Contactar</a>
       </div>
     </div>
+
+    <svg class="hero-art" viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de un desarrollador programando frente a un monitor">
+      <rect x="0" y="0" width="420" height="380" fill="none"/>
+      <!-- desk -->
+      <rect x="20" y="300" width="380" height="8" rx="2" fill="#1A2436"/>
+      <rect x="45" y="308" width="10" height="46" fill="#1A2436"/>
+      <rect x="365" y="308" width="10" height="46" fill="#1A2436"/>
+      <!-- monitor -->
+      <rect x="95" y="90" width="230" height="150" rx="8" fill="#0F1826" stroke="#C9A227" stroke-width="2"/>
+      <rect x="112" y="107" width="196" height="116" rx="2" fill="#0B1220"/>
+      <rect x="195" y="240" width="30" height="22" fill="#1A2436"/>
+      <rect x="170" y="262" width="80" height="8" rx="3" fill="#1A2436"/>
+      <!-- code lines on screen -->
+      <g font-family="JetBrains Mono, monospace" font-size="10" fill="#A9AEBB">
+        <text x="124" y="128" fill="#C9A227">def</text>
+        <text x="150" y="128">evaluar_credito(datos):</text>
+        <rect x="124" y="140" width="70" height="6" fill="#4C9A6A" opacity="0.8"/>
+        <rect x="124" y="152" width="110" height="6" fill="#A9AEBB" opacity="0.5"/>
+        <rect x="140" y="164" width="90" height="6" fill="#A9AEBB" opacity="0.5"/>
+        <rect x="140" y="176" width="60" height="6" fill="#C9A227" opacity="0.8"/>
+        <rect x="124" y="188" width="100" height="6" fill="#A9AEBB" opacity="0.5"/>
+        <rect x="124" y="200" width="40" height="6" class="blink" fill="#EDEAE3"/>
+      </g>
+      <!-- chair -->
+      <path d="M170 340 L170 300 Q170 285 185 285 L235 285 Q250 285 250 300 L250 340" fill="none" stroke="#1A2436" stroke-width="10" stroke-linecap="round"/>
+      <!-- person: simple seated silhouette -->
+      <circle cx="210" cy="255" r="16" fill="#1A2436"/>
+      <path d="M186 305 Q186 275 210 273 Q234 275 234 305 L234 320 L186 320 Z" fill="#1A2436"/>
+      <!-- arms reaching to keyboard -->
+      <path d="M192 292 Q170 300 158 306" stroke="#1A2436" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M228 292 Q252 300 264 306" stroke="#1A2436" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <!-- keyboard -->
+      <rect x="150" y="300" width="120" height="14" rx="3" fill="#1A2436" stroke="#C9A227" stroke-width="1.5"/>
+      <!-- mug -->
+      <rect x="320" y="280" width="20" height="20" rx="3" fill="#0F1826" stroke="#C9A227" stroke-width="1.5"/>
+      <path d="M340 285 Q350 285 350 293 Q350 300 340 300" fill="none" stroke="#C9A227" stroke-width="1.5"/>
+      <!-- plant -->
+      <rect x="76" y="280" width="16" height="20" rx="2" fill="#1A2436"/>
+      <path d="M84 280 Q76 262 68 258 M84 280 Q84 258 84 250 M84 280 Q92 262 100 258" stroke="#4C9A6A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
   </div>
 </section>
 
@@ -249,7 +260,7 @@
             <li>Infraestructura AWS: EC2, S3 y RDS para cómputo, almacenamiento y persistencia.</li>
             <li>Automatización del cálculo mensual de provisiones financieras.</li>
             <li>ETL reutilizables integrando fuentes heterogéneas para modelos y dashboards.</li>
-             <li>Trabajo en análisis y modelos de riesgo de crédito.</li>
+            <li>Trabajo en análisis y modelos de riesgo de crédito.</li>
           </ul>
         </div>
       </div>
@@ -386,55 +397,6 @@
     <span>Santiago, Chile</span>
   </div>
 </footer>
-
-<script>
-(function(){
-  var scenarios = [
-    { id:'CL-88213', amt:'$4.200.000', term:'36 meses', score:712, approved:true, lat:118,
-      feats:[['Historial de pago','pos',72],['Ingreso / cuota','pos',55],['Antigüedad laboral','pos',30],['Deuda total activa','neg',40]] },
-    { id:'CL-45590', amt:'$9.800.000', term:'48 meses', score:588, approved:false, lat:96,
-      feats:[['Deuda total activa','neg',80],['DICOM / mora previa','neg',65],['Ingreso / cuota','neg',35],['Antigüedad laboral','pos',18]] },
-    { id:'CL-61042', amt:'$2.100.000', term:'12 meses', score:749, approved:true, lat:104,
-      feats:[['Historial de pago','pos',85],['Antigüedad laboral','pos',48],['Ingreso / cuota','pos',60],['Deuda total activa','neg',15]] },
-    { id:'CL-70317', amt:'$6.500.000', term:'60 meses', score:641, approved:false, lat:131,
-      feats:[['Relación cuota/ingreso','neg',58],['Deuda total activa','neg',44],['Historial de pago','pos',22],['Antigüedad laboral','neg',12]] }
-  ];
-  var i = 0;
-
-  function render(s){
-    document.getElementById('reqId').textContent = s.id;
-    document.getElementById('reqAmt').textContent = s.amt;
-    document.getElementById('reqTerm').textContent = s.term;
-    document.getElementById('reqScore').textContent = s.score;
-    document.getElementById('reqSub').textContent = 'latencia del modelo: ' + s.lat + 'ms';
-    var result = document.getElementById('reqResult');
-    if(s.approved){
-      result.textContent = '✓ APROBADO';
-      result.classList.remove('rejected');
-    } else {
-      result.textContent = '✕ RECHAZADO';
-      result.classList.add('rejected');
-    }
-    var rowsEl = document.getElementById('shapRows');
-    rowsEl.innerHTML = '';
-    s.feats.forEach(function(f){
-      var row = document.createElement('div');
-      row.className = 'shap-row';
-      var pct = f[2] / 2;
-      row.innerHTML =
-        '<span class="shap-name">'+f[0]+'</span>' +
-        '<span class="shap-bar-track"><span class="shap-bar '+f[1]+'" style="width:'+pct+'%"></span></span>';
-      rowsEl.appendChild(row);
-    });
-  }
-
-  render(scenarios[0]);
-  document.getElementById('refreshBtn').addEventListener('click', function(){
-    i = (i + 1) % scenarios.length;
-    render(scenarios[i]);
-  });
-})();
-</script>
 
 </body>
 </html>
