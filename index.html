@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vicente Muñoz Rojas — Ingeniero Informático / Fullstack Developer</title>
+<meta name="description" content="Portafolio de Vicente Muñoz Rojas. Ingeniero Civil en Informática: desarrollo fullstack, APIs, automatización de procesos, Data Science y MLOps.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B1220;
+    --ink-2:#0F1826;
+    --paper:#EDEAE3;
+    --paper-dim:#A9AEBB;
+    --gold:#C9A227;
+    --approve:#4C9A6A;
+    --reject:#C1443D;
+    --line: rgba(237,234,227,0.12);
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --sans: 'Inter', system-ui, sans-serif;
+    --maxw: 1080px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--gold); color:var(--ink); }
+  a{ color:inherit; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); display:flex; align-items:center; gap:10px; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:''; width:22px; height:1px; background:var(--gold); display:inline-block; }
+
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,18,32,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+  .nav-brand{ font-family:var(--mono); font-weight:700; font-size:14px; letter-spacing:.04em; }
+  .nav-brand span{ color:var(--gold); }
+  .nav-links{ display:flex; gap:26px; list-style:none; font-family:var(--mono); font-size:13px; }
+  .nav-links a{ text-decoration:none; color:var(--paper-dim); transition:color .15s; }
+  .nav-links a:hover{ color:var(--paper); }
+  .nav-links a:focus-visible, a:focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  /* ===== HERO ===== */
+  .hero{ padding:96px 0 72px; border-bottom:1px solid var(--line); }
+  .hero-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:start; }
+  .hero h1{
+    font-family:var(--mono); font-weight:800; font-size:clamp(34px,5vw,54px);
+    line-height:1.08; letter-spacing:-0.01em; margin-bottom:18px;
+  }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero p.lede{ color:var(--paper-dim); font-size:17px; max-width:52ch; margin-bottom:28px; }
+  .hero-meta{ display:flex; flex-wrap:wrap; gap:10px 22px; font-family:var(--mono); font-size:12.5px; color:var(--paper-dim); margin-bottom:32px; }
+  .hero-meta span{ color:var(--paper); }
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.02em;
+    padding:12px 20px; border-radius:3px; text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn-primary{ background:var(--gold); color:var(--ink); }
+  .btn-primary:hover{ transform:translateY(-1px); background:#DCB53A; }
+  .btn-ghost{ border:1px solid var(--line); color:var(--paper); }
+  .btn-ghost:hover{ border-color:var(--paper-dim); }
+
+  /* Signature element: live credit-decision card */
+  .decision-card{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:6px; overflow:hidden;
+    font-family:var(--mono);
+  }
+  .decision-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:12px 16px; border-bottom:1px solid var(--line); font-size:11px; color:var(--paper-dim);
+    letter-spacing:.08em; text-transform:uppercase;
+  }
+  .dots{ display:flex; gap:6px; }
+  .dots i{ width:8px; height:8px; border-radius:50%; background:var(--line); display:block; }
+  .decision-body{ padding:20px 16px; }
+  .decision-row{ display:flex; justify-content:space-between; font-size:12.5px; color:var(--paper-dim); padding:5px 0; border-bottom:1px dashed var(--line); }
+  .decision-row span:last-child{ color:var(--paper); }
+  .decision-result{
+    margin-top:16px; padding:14px; border-radius:4px; text-align:center;
+    font-weight:700; font-size:15px; letter-spacing:.04em;
+    border:1px solid var(--approve); color:var(--approve); background:rgba(76,154,106,0.08);
+    transition:all .35s ease;
+  }
+  .decision-result.rejected{ border-color:var(--reject); color:var(--reject); background:rgba(193,68,61,0.08); }
+  .decision-sub{ margin-top:6px; font-size:10.5px; color:var(--paper-dim); font-weight:400; letter-spacing:.02em;}
+  .shap{ margin-top:16px; }
+  .shap-label{ font-size:10.5px; color:var(--paper-dim); letter-spacing:.06em; text-transform:uppercase; margin-bottom:10px; }
+  .shap-row{ display:flex; align-items:center; gap:10px; margin-bottom:7px; font-size:11px; }
+  .shap-name{ width:110px; color:var(--paper-dim); flex-shrink:0; }
+  .shap-bar-track{ flex:1; height:6px; background:var(--line); border-radius:3px; position:relative; overflow:hidden; }
+  .shap-bar{ position:absolute; top:0; bottom:0; border-radius:3px; transition:width .5s ease; }
+  .shap-bar.pos{ left:50%; background:var(--approve); }
+  .shap-bar.neg{ right:50%; background:var(--reject); }
+  .decision-refresh{ width:100%; margin-top:16px; padding:10px; background:transparent; border:1px solid var(--line); color:var(--paper-dim); font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; border-radius:3px; cursor:pointer; transition:all .15s; }
+  .decision-refresh:hover{ border-color:var(--gold); color:var(--gold); }
+  .decision-refresh:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+  /* ===== SECTION SHELL ===== */
+  section{ padding:76px 0; border-bottom:1px solid var(--line); }
+  section:last-of-type{ border-bottom:none; }
+  h2.h-title{ font-family:var(--mono); font-size:clamp(22px,3vw,30px); font-weight:700; margin-bottom:36px; }
+
+  /* ===== ABOUT ===== */
+  .about-body{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .about-body p{ color:var(--paper-dim); font-size:15.5px; margin-bottom:14px; }
+  .about-body strong{ color:var(--paper); font-weight:600; }
+  .stat-list{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line); }
+  .stat-item{ display:flex; justify-content:space-between; align-items:baseline; padding:16px 0; border-bottom:1px solid var(--line); }
+  .stat-item .num{ font-family:var(--mono); font-size:26px; font-weight:700; color:var(--gold); }
+  .stat-item .lbl{ font-size:13px; color:var(--paper-dim); text-align:right; max-width:60%; }
+
+  /* ===== EXPERIENCE (ledger) ===== */
+  .ledger{ border-top:1px solid var(--line); }
+  .ledger-row{
+    display:grid; grid-template-columns:150px 1fr; gap:28px;
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .ledger-date{ font-family:var(--mono); font-size:12px; color:var(--gold); letter-spacing:.03em; }
+  .ledger-role{ font-weight:700; font-size:16.5px; margin-bottom:2px; }
+  .ledger-org{ font-family:var(--mono); font-size:12.5px; color:var(--paper-dim); margin-bottom:12px; }
+  .ledger-desc{ list-style:none; }
+  .ledger-desc li{ position:relative; padding-left:16px; color:var(--paper-dim); font-size:14px; margin-bottom:6px; }
+  .ledger-desc li::before{ content:'—'; position:absolute; left:0; color:var(--paper-dim); opacity:.5; }
+
+  /* ===== PROJECTS ===== */
+  .proj-grid{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); }
+  .proj-card{ background:var(--ink); padding:28px; display:flex; flex-direction:column; gap:12px; }
+  .proj-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .proj-title{ font-weight:700; font-size:17px; }
+  .proj-tag{ font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold); padding:3px 8px; border-radius:20px; white-space:nowrap; }
+  .proj-desc{ color:var(--paper-dim); font-size:14px; flex:1; }
+  .proj-stack{ display:flex; flex-wrap:wrap; gap:6px; margin-top:6px; }
+  .proj-stack span{ font-family:var(--mono); font-size:10.5px; color:var(--paper-dim); border:1px solid var(--line); padding:3px 8px; border-radius:3px; }
+
+  /* ===== SKILLS ===== */
+  .skills-grid{ display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width: 1000px){ .skills-grid{ grid-template-columns:repeat(3,1fr); } }
+  .skill-col{ background:var(--ink); padding:22px; }
+  .skill-col h3{ font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .skill-col ul{ list-style:none; }
+  .skill-col li{ font-size:13.5px; color:var(--paper-dim); padding:4px 0; }
+
+  /* ===== CONTACT ===== */
+  .contact{ text-align:left; }
+  .contact h2.h-title{ margin-bottom:16px; }
+  .contact p.lede{ color:var(--paper-dim); max-width:56ch; margin-bottom:32px; font-size:15.5px; }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:14px; }
+
+  footer{ padding:32px 0; }
+  footer .wrap{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-family:var(--mono); font-size:11.5px; color:var(--paper-dim); }
+
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .about-body{ grid-template-columns:1fr; }
+    .proj-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns:1fr 1fr; }
+    .nav-links{ display:none; }
+    .ledger-row{ grid-template-columns:1fr; gap:6px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-brand">VMR<span>.</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">Perfil</a></li>
+      <li><a href="#experience">Experiencia</a></li>
+      <li><a href="#projects">Proyectos</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Ingeniero Informático · Fullstack Developer</div>
+      <h1>Vicente Muñoz Rojas construye software que <em>llega a producción.</em></h1>
+      <p class="lede">Ingeniero Civil en Informática (UTFSM). Programo full stack, construyo APIs, automatizo procesos y despliego infraestructura en AWS — y aplico todo eso también a modelos de Data Science y MLOps cuando el proyecto lo pide.</p>
+      <div class="hero-meta">
+        <div>📍 <span>Santiago, Chile</span></div>
+        <div>✉️ <span>vichomr2001@gmail.com</span></div>
+        <div>🎓 <span>UTFSM, 2020–2025</span></div>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#projects">Ver proyectos</a>
+        <a class="btn btn-ghost" href="#contact">Contactar</a>
+      </div>
+    </div>
+
+    <div class="decision-card" id="decisionCard" aria-live="polite">
+      <div class="decision-head">
+        <span>credit_engine.predict()</span>
+        <div class="dots"><i></i><i></i><i></i></div>
+      </div>
+      <div class="decision-body">
+        <div class="decision-row"><span>solicitante_id</span><span id="reqId">CL-88213</span></div>
+        <div class="decision-row"><span>monto_solicitado</span><span id="reqAmt">$4.200.000</span></div>
+        <div class="decision-row"><span>plazo</span><span id="reqTerm">36 meses</span></div>
+        <div class="decision-row"><span>score</span><span id="reqScore">712</span></div>
+        <div class="decision-result" id="reqResult">✓ APROBADO</div>
+        <div class="decision-sub" id="reqSub">latencia del modelo: 118ms</div>
+        <div class="shap">
+          <div class="shap-label">Explicabilidad (SHAP)</div>
+          <div id="shapRows"></div>
+        </div>
+        <button class="decision-refresh" id="refreshBtn">Evaluar otra solicitud →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow">Perfil</div>
+    <h2 class="h-title">De la hoja de cálculo al pipeline en producción</h2>
+    <div class="about-body">
+      <div>
+        <p>Soy Ingeniero Civil en Informático: programo, diseño arquitectura y llevo software de punta a punta — backend, frontend, bases de datos e infraestructura. Me gusta construir <strong>APIs, programas y sistemas que automatizan trabajo manual</strong>.</p>
+        <p>En <strong>BK Servicios Financieros</strong> aplico eso al riesgo crediticio: automaticé el cálculo mensual de provisiones financieras y migré procesos desde hojas de cálculo y scripts ad-hoc hacia <strong>pipelines robustos en Python y AWS Lambda</strong>. También diseño y despliego APIs (FastAPI/REST) e infraestructura en AWS.</p>
+        <p>Fuera del trabajo full-time desarrollo proyectos propios de punta a punta — incluyendo un juego móvil publicado en Google Play y un sistema full stack para automatizar control de calidad — porque me gusta llevar las cosas hasta que funcionan de verdad, no solo hasta el prototipo.</p>
+      </div>
+      <div class="stat-list">
+        <div class="stat-item"><span class="num">3+</span><span class="lbl">años programando y desplegando software en producción</span></div>
+        <div class="stat-item"><span class="num">FULL</span><span class="lbl">stack: backend, frontend, bases de datos e infraestructura</span></div>
+        <div class="stat-item"><span class="num">AWS</span><span class="lbl">EC2 · S3 · RDS · Lambda · Docker/ECS</span></div>
+        <div class="stat-item"><span class="num">4</span><span class="lbl">roles: BK, Banco Bice, UTFSM (x2), HappyVolt</span></div>
+        <div class="stat-item"><span class="num">1</span><span class="lbl">app publicada en Google Play, de cero a producción</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow">Experiencia</div>
+    <h2 class="h-title">Registro laboral</h2>
+    <div class="ledger">
+
+      <div class="ledger-row">
+        <div class="ledger-date">01/2025 — hoy</div>
+        <div>
+          <div class="ledger-role">Data Scientist &amp; Data Engineer / MLOps</div>
+          <div class="ledger-org">BK Servicios Financieros — Santiago, Chile</div>
+          <ul class="ledger-desc">
+            <li>Modelos de aprobación/rechazo de crédito: ciclo completo desde datos hasta producción.</li>
+            <li>APIs (FastAPI/REST) para exponer modelos e integrar predicciones en sistemas internos.</li>
+            <li>Infraestructura AWS: EC2, S3 y RDS para cómputo, almacenamiento y persistencia.</li>
+            <li>Automatización del cálculo mensual de provisiones financieras.</li>
+            <li>ETL reutilizables integrando fuentes heterogéneas para modelos y dashboards.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-date">Actualidad</div>
+        <div>
+          <div class="ledger-role">Colaborador de datos y modelos</div>
+          <div class="ledger-org">Banco Bice — Santiago, Chile</div>
+          <ul class="ledger-desc">
+            <li>Trabajo en análisis y modelos de riesgo de crédito.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-date">06/2024 — 05/2025</div>
+        <div>
+          <div class="ledger-role">Ayudante de Programación</div>
+          <div class="ledger-org">Universidad Técnica Federico Santa María</div>
+          <ul class="ledger-desc">
+            <li>Apoyo en la enseñanza de fundamentos de Python a estudiantes de primer año.</li>
+            <li>Implementación de una metodología de enseñanza propia como parte del trabajo de título (2025).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-date">06/2024 — 12/2024</div>
+        <div>
+          <div class="ledger-role">Ayudante de Inteligencia Artificial</div>
+          <div class="ledger-org">Universidad Técnica Federico Santa María</div>
+          <ul class="ledger-desc">
+            <li>Tutoría en optimización: Tabu Search, Simulated Annealing, Hill Climbing, Algoritmos Evolutivos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ledger-row">
+        <div class="ledger-date">01/2023 — 03/2023</div>
+        <div>
+          <div class="ledger-role">Practicante Full Stack Developer</div>
+          <div class="ledger-org">HappyVolt — Santiago, Chile</div>
+          <ul class="ledger-desc">
+            <li>Desarrollo full stack: backend, frontend, bases de datos y Go (Golang).</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="eyebrow">Proyectos</div>
+    <h2 class="h-title">Lo que he construido de punta a punta</h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">QAGuardIAn</div>
+          <div class="proj-tag">Feria de Software UTFSM</div>
+        </div>
+        <p class="proj-desc">Automatiza la revisión de calidad en ventas telefónicas conforme a normativa chilena (SERNAC, CMF). Analiza grabaciones con IA y detecta en minutos errores que podrían derivar en reclamos regulatorios. Diseñé backend (APIs REST), frontend de reportes y la integración con S3 y MongoDB.</p>
+        <div class="proj-stack"><span>Python</span><span>REST APIs</span><span>AWS S3</span><span>MongoDB</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">No Era Yo — El Impostor</div>
+          <div class="proj-tag">Google Play</div>
+        </div>
+        <p class="proj-desc">Juego móvil de deducción social construido en Flutter y publicado en Google Play. Llevé el pipeline de release completo: build en Kotlin DSL, firma del AAB, ficha en Play Console, debugging de crashes en producción y UI responsiva.</p>
+        <div class="proj-stack"><span>Flutter</span><span>Kotlin</span><span>Google Play Console</span><span>CI/CD</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">Pipeline de Provisiones en AWS Lambda</div>
+          <div class="proj-tag">BK Servicios Financieros</div>
+        </div>
+        <p class="proj-desc">Migración de notebooks a funciones Lambda (S3 vía boto3) para un pipeline de datos financieros: descargas SFTP, flujo de caja, cobranza y maestro de activos. Refactorización de un script de provisiones de leasing a una estructura modular para cálculos de ECL.</p>
+        <div class="proj-stack"><span>AWS Lambda</span><span>AWS CDK</span><span>TypeScript</span><span>boto3</span></div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-top">
+          <div class="proj-title">Pipeline de análisis PSI</div>
+          <div class="proj-tag">Riesgo de Crédito</div>
+        </div>
+        <p class="proj-desc">Pipeline en Python para calcular Population Stability Index sobre datos de vintage de cartera de crédito, con funciones reutilizables de procesamiento, cálculo y visualización, cubriendo múltiples segmentos y camadas.</p>
+        <div class="proj-stack"><span>Python</span><span>Pandas</span><span>Visualización</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="eyebrow">Skills</div>
+    <h2 class="h-title">Stack técnico</h2>
+    <div class="skills-grid">
+      <div class="skill-col">
+        <h3>Lenguajes</h3>
+        <ul><li>Python</li><li>SQL</li><li>TypeScript</li><li>Go</li><li>Java</li><li>C++</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Backend &amp; APIs</h3>
+        <ul><li>FastAPI</li><li>Node.js / Express</li><li>RESTful APIs</li><li>Automatización de procesos</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Frontend &amp; Mobile</h3>
+        <ul><li>React / Next.js</li><li>Tailwind CSS</li><li>Flutter</li><li>HTML5 / CSS3</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Cloud &amp; Datos</h3>
+        <ul><li>AWS (EC2, S3, RDS, Lambda)</li><li>Docker / ECS</li><li>PostgreSQL · MongoDB</li><li>Pandas / NumPy</li></ul>
+      </div>
+      <div class="skill-col">
+        <h3>Data Science / MLOps</h3>
+        <ul><li>Scikit-learn</li><li>TensorFlow / PyTorch</li><li>MLflow</li><li>SHAP</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow">Contacto</div>
+    <h2 class="h-title">Hablemos</h2>
+    <p class="lede">Abierto a conversar sobre roles de Data Science, ML Engineering, MLOps o Ingeniería de Datos.</p>
+    <div class="contact-links">
+      <a class="btn btn-primary" href="mailto:vichomr2001@gmail.com">Enviar email</a>
+      <a class="btn btn-ghost" href="https://github.com/Vichoooz" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/vicente-mu%C3%B1oz-rojas/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Vicente Muñoz Rojas</span>
+    <span>Santiago, Chile</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var scenarios = [
+    { id:'CL-88213', amt:'$4.200.000', term:'36 meses', score:712, approved:true, lat:118,
+      feats:[['Historial de pago','pos',72],['Ingreso / cuota','pos',55],['Antigüedad laboral','pos',30],['Deuda total activa','neg',40]] },
+    { id:'CL-45590', amt:'$9.800.000', term:'48 meses', score:588, approved:false, lat:96,
+      feats:[['Deuda total activa','neg',80],['DICOM / mora previa','neg',65],['Ingreso / cuota','neg',35],['Antigüedad laboral','pos',18]] },
+    { id:'CL-61042', amt:'$2.100.000', term:'12 meses', score:749, approved:true, lat:104,
+      feats:[['Historial de pago','pos',85],['Antigüedad laboral','pos',48],['Ingreso / cuota','pos',60],['Deuda total activa','neg',15]] },
+    { id:'CL-70317', amt:'$6.500.000', term:'60 meses', score:641, approved:false, lat:131,
+      feats:[['Relación cuota/ingreso','neg',58],['Deuda total activa','neg',44],['Historial de pago','pos',22],['Antigüedad laboral','neg',12]] }
+  ];
+  var i = 0;
+
+  function render(s){
+    document.getElementById('reqId').textContent = s.id;
+    document.getElementById('reqAmt').textContent = s.amt;
+    document.getElementById('reqTerm').textContent = s.term;
+    document.getElementById('reqScore').textContent = s.score;
+    document.getElementById('reqSub').textContent = 'latencia del modelo: ' + s.lat + 'ms';
+    var result = document.getElementById('reqResult');
+    if(s.approved){
+      result.textContent = '✓ APROBADO';
+      result.classList.remove('rejected');
+    } else {
+      result.textContent = '✕ RECHAZADO';
+      result.classList.add('rejected');
+    }
+    var rowsEl = document.getElementById('shapRows');
+    rowsEl.innerHTML = '';
+    s.feats.forEach(function(f){
+      var row = document.createElement('div');
+      row.className = 'shap-row';
+      var pct = f[2] / 2;
+      row.innerHTML =
+        '<span class="shap-name">'+f[0]+'</span>' +
+        '<span class="shap-bar-track"><span class="shap-bar '+f[1]+'" style="width:'+pct+'%"></span></span>';
+      rowsEl.appendChild(row);
+    });
+  }
+
+  render(scenarios[0]);
+  document.getElementById('refreshBtn').addEventListener('click', function(){
+    i = (i + 1) % scenarios.length;
+    render(scenarios[i]);
+  });
+})();
+</script>
+
+</body>
+</html>
